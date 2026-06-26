@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Ruleta de Cafes</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;700;800;900&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <main class="roulette-page">
+      <div class="photo-wall" id="photoWall" aria-hidden="true"></div>
+      <div class="page-shade" aria-hidden="true"></div>
+
+      <section class="roulette-stage" aria-label="Ruleta de cafes">
+        <div class="title-block">
+          <p>Plan de cafe</p>
+          <h1>Ruleta de cafes</h1>
+        </div>
+
+        <div class="wheel-wrap">
+          <canvas id="wheel" width="820" height="820" aria-label="Ruleta con opciones de cafe"></canvas>
+          <div class="wheel-pointer" aria-hidden="true"></div>
+          <button class="spin-button" id="spinButton" type="button">Girar</button>
+        </div>
+
+        <div class="result-card" aria-live="polite">
+          <span>Resultado</span>
+          <h2 id="resultName">Todavia no giramos</h2>
+          <p id="resultMeta">Cuando salga uno, queda decidido el cafe.</p>
+          <div class="result-actions">
+            <a id="mapLink" class="map-link is-disabled" href="#" target="_blank" rel="noreferrer" aria-disabled="true">Ver mapa</a>
+            <button id="rerollButton" class="reroll-button" type="button">Otra vuelta</button>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>

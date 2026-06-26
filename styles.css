@@ -1,0 +1,314 @@
+:root {
+  color-scheme: light;
+  --ink: #201615;
+  --cream: #fff7eb;
+  --cream-soft: rgba(255, 247, 235, 0.82);
+  --coffee: #5b342b;
+  --rose: #b94a62;
+  --terracotta: #c65f3d;
+  --honey: #f0b85b;
+  --green: #2d6d63;
+  --blue: #355c7d;
+  --violet: #7c5a9b;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  overflow-x: hidden;
+  background: var(--ink);
+  color: var(--cream);
+  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+button,
+a {
+  font: inherit;
+}
+
+.roulette-page {
+  position: relative;
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  isolation: isolate;
+  overflow: hidden;
+}
+
+.photo-wall,
+.page-shade {
+  position: absolute;
+  inset: 0;
+}
+
+.photo-wall {
+  z-index: -3;
+  background: #2b1d1a;
+}
+
+.page-shade {
+  z-index: -1;
+  background:
+    radial-gradient(circle at center, rgba(32, 22, 21, 0.12), rgba(32, 22, 21, 0.62) 48%, rgba(32, 22, 21, 0.86)),
+    linear-gradient(180deg, rgba(32, 22, 21, 0.34), rgba(32, 22, 21, 0.82));
+}
+
+.photo-slot {
+  position: absolute;
+  overflow: hidden;
+  border: 1px solid rgba(255, 247, 235, 0.26);
+  border-radius: 8px;
+  background:
+    linear-gradient(135deg, rgba(185, 74, 98, 0.68), rgba(45, 109, 99, 0.62)),
+    url("assets/images/cafe-bg.png") center/cover;
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.28);
+  transform: rotate(var(--tilt));
+}
+
+.photo-slot img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  filter: saturate(1.06) contrast(1.02);
+}
+
+.photo-slot::after {
+  content: attr(data-label);
+  position: absolute;
+  left: 12px;
+  bottom: 10px;
+  max-width: calc(100% - 24px);
+  border-radius: 999px;
+  padding: 7px 10px;
+  background: rgba(32, 22, 21, 0.48);
+  color: rgba(255, 247, 235, 0.88);
+  font-size: 0.76rem;
+  font-weight: 800;
+  backdrop-filter: blur(12px);
+}
+
+.photo-slot.has-photo::after {
+  display: none;
+}
+
+.photo-slot:nth-child(1) {
+  width: 27vw;
+  height: 34vh;
+  left: -4vw;
+  top: 8vh;
+  --tilt: -7deg;
+}
+
+.photo-slot:nth-child(2) {
+  width: 27vw;
+  height: 34vh;
+  right: -4vw;
+  top: 9vh;
+  --tilt: 5deg;
+}
+
+.photo-slot:nth-child(3) {
+  width: 28vw;
+  height: 27vh;
+  left: 8vw;
+  bottom: 8vh;
+  --tilt: 4deg;
+}
+
+.roulette-stage {
+  width: min(960px, calc(100% - 32px));
+  min-height: min(920px, calc(100vh - 36px));
+  padding: clamp(18px, 3vw, 34px);
+  display: grid;
+  grid-template-rows: auto minmax(320px, 1fr) auto;
+  align-items: center;
+  justify-items: center;
+  gap: clamp(14px, 2.8vh, 24px);
+  text-align: center;
+}
+
+.title-block p {
+  margin: 0 0 8px;
+  color: var(--honey);
+  font-size: 0.82rem;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.title-block h1 {
+  margin: 0;
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: clamp(3.1rem, 8vw, 6.8rem);
+  line-height: 0.88;
+  letter-spacing: 0;
+  text-shadow: 0 14px 42px rgba(0, 0, 0, 0.34);
+}
+
+.wheel-wrap {
+  position: relative;
+  width: min(70vh, 680px, 92vw);
+  display: grid;
+  place-items: center;
+  aspect-ratio: 1;
+}
+
+#wheel {
+  width: 100%;
+  height: auto;
+  display: block;
+  filter: drop-shadow(0 32px 46px rgba(0, 0, 0, 0.42));
+  transform: rotate(var(--rotation, 0deg));
+  transition: transform 4.8s cubic-bezier(0.12, 0.72, 0.16, 1);
+}
+
+.wheel-pointer {
+  position: absolute;
+  top: -2px;
+  left: 50%;
+  width: clamp(26px, 5vw, 42px);
+  height: clamp(36px, 6.5vw, 54px);
+  transform: translateX(-50%);
+  background: var(--cream);
+  clip-path: polygon(50% 100%, 0 0, 100% 0);
+  filter: drop-shadow(0 8px 12px rgba(0, 0, 0, 0.34));
+  z-index: 2;
+}
+
+.spin-button {
+  position: absolute;
+  width: clamp(90px, 20%, 138px);
+  aspect-ratio: 1;
+  border: 0;
+  border-radius: 50%;
+  background: var(--cream);
+  color: var(--ink);
+  box-shadow: inset 0 0 0 9px rgba(240, 184, 91, 0.4), 0 18px 40px rgba(0, 0, 0, 0.32);
+  font-weight: 900;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: transform 180ms ease, box-shadow 180ms ease;
+  z-index: 3;
+}
+
+.spin-button:hover {
+  transform: scale(1.04);
+  box-shadow: inset 0 0 0 9px rgba(240, 184, 91, 0.54), 0 20px 46px rgba(0, 0, 0, 0.38);
+}
+
+.spin-button:disabled {
+  cursor: wait;
+  opacity: 0.72;
+}
+
+.result-card {
+  width: min(640px, 100%);
+  border: 1px solid rgba(255, 247, 235, 0.24);
+  border-radius: 8px;
+  padding: clamp(16px, 3vw, 22px);
+  background: rgba(32, 22, 21, 0.48);
+  box-shadow: 0 22px 70px rgba(0, 0, 0, 0.28);
+  backdrop-filter: blur(18px);
+}
+
+.result-card span {
+  color: var(--honey);
+  font-size: 0.76rem;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.result-card h2 {
+  margin: 8px 0 8px;
+  font-size: clamp(1.65rem, 4.8vw, 2.65rem);
+  line-height: 1;
+}
+
+.result-card p {
+  margin: 0;
+  color: var(--cream-soft);
+  line-height: 1.45;
+}
+
+.result-actions {
+  margin-top: 16px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.map-link,
+.reroll-button {
+  min-height: 42px;
+  border: 1px solid rgba(255, 247, 235, 0.28);
+  border-radius: 999px;
+  padding: 10px 15px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--cream);
+  background: rgba(255, 247, 235, 0.12);
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.map-link.is-disabled {
+  pointer-events: none;
+  opacity: 0.45;
+}
+
+@media (max-width: 760px) {
+  .roulette-stage {
+    width: min(100% - 24px, 960px);
+    min-height: 100vh;
+    padding: 22px 0;
+  }
+
+  .wheel-wrap {
+    width: min(92vw, 520px);
+  }
+
+  .photo-slot {
+    opacity: 0.74;
+  }
+
+  .photo-slot:nth-child(1) {
+    width: 48vw;
+    height: 23vh;
+    left: -16vw;
+    top: 7vh;
+  }
+
+  .photo-slot:nth-child(2) {
+    width: 48vw;
+    height: 22vh;
+    left: auto;
+    right: -15vw;
+    top: -8vh;
+  }
+
+  .photo-slot:nth-child(3) {
+    width: 58vw;
+    height: 20vh;
+    left: 50%;
+    right: auto;
+    bottom: 10vh;
+    transform: translateX(-50%) rotate(var(--tilt));
+  }
+}
+
+@media (max-width: 430px) {
+  .title-block h1 {
+    font-size: clamp(2.6rem, 16vw, 4rem);
+  }
+
+  .result-card {
+    padding: 15px;
+  }
+}
