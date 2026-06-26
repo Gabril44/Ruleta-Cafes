@@ -277,7 +277,7 @@ a {
   }
 
   .wheel-wrap {
-    width: min(92vw, 520px);
+    width: min(84vw, 440px);
   }
 
   .photo-slot {
@@ -300,18 +300,29 @@ a {
   }
 
   .photo-slot:nth-child(3) {
-    width: 70vw;
-    height: 23vh;
-    left: 50%;
+    width: 54vw;
+    height: 24vh;
+    left: 3vw;
     right: auto;
-    bottom: 15vh;
-    transform: translateX(-50%) rotate(var(--tilt));
+    bottom: 18vh;
+    --tilt: -5deg;
+    transform: rotate(var(--tilt));
   }
 }
 
 @media (max-width: 430px) {
   .title-block h1 {
     font-size: clamp(2.6rem, 16vw, 4rem);
+  }
+
+  .wheel-wrap {
+    width: min(80vw, 360px);
+  }
+
+  .photo-slot:nth-child(3) {
+    width: 56vw;
+    left: -2vw;
+    bottom: 17vh;
   }
 
   .result-card {
