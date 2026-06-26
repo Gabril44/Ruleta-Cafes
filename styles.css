@@ -264,6 +264,12 @@ a {
 }
 
 @media (max-width: 760px) {
+  .page-shade {
+    background:
+      radial-gradient(circle at center, rgba(32, 22, 21, 0.08), rgba(32, 22, 21, 0.5) 50%, rgba(32, 22, 21, 0.74)),
+      linear-gradient(180deg, rgba(32, 22, 21, 0.2), rgba(32, 22, 21, 0.68));
+  }
+
   .roulette-stage {
     width: min(100% - 24px, 960px);
     min-height: 100vh;
@@ -275,30 +281,30 @@ a {
   }
 
   .photo-slot {
-    opacity: 0.74;
+    opacity: 0.92;
   }
 
   .photo-slot:nth-child(1) {
-    width: 48vw;
-    height: 23vh;
-    left: -16vw;
-    top: 7vh;
+    width: 56vw;
+    height: 24vh;
+    left: -6vw;
+    top: 8vh;
   }
 
   .photo-slot:nth-child(2) {
-    width: 48vw;
-    height: 22vh;
+    width: 56vw;
+    height: 24vh;
     left: auto;
-    right: -15vw;
-    top: -8vh;
+    right: -7vw;
+    top: 18vh;
   }
 
   .photo-slot:nth-child(3) {
-    width: 58vw;
-    height: 20vh;
+    width: 70vw;
+    height: 23vh;
     left: 50%;
     right: auto;
-    bottom: 10vh;
+    bottom: 15vh;
     transform: translateX(-50%) rotate(var(--tilt));
   }
 }
