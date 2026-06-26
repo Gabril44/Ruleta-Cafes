@@ -37,9 +37,9 @@ const coffeePlaces = [
 ];
 
 const backgroundPhotos = [
-  { src: "assets/photos/nosotros-1.jpeg", label: "Foto 1" },
-  { src: "assets/photos/nosotros-2.jpeg", label: "Foto 2" },
-  { src: "assets/photos/nosotros-3.jpeg", label: "Foto 3" }
+  { src: "assets/photos/Nosotros-1.jpeg", label: "Foto 1" },
+  { src: "assets/photos/Nosotros-2.jpeg", label: "Foto 2" },
+  { src: "assets/photos/Nosotros-3.jpeg", label: "Foto 3" }
 ];
 
 const wheel = document.querySelector("#wheel");

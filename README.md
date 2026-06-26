@@ -27,9 +27,9 @@ assets/photos/
 Por defecto la pagina busca:
 
 ```txt
-nosotros-1.jpg
-nosotros-2.jpg
-nosotros-3.jpg
+Nosotros-1.jpeg
+Nosotros-2.jpeg
+Nosotros-3.jpeg
 ```
 
 Si quieres cambiar nombres o sumar mas espacios, edita el array `backgroundPhotos` en `script.js`.
